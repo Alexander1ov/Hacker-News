@@ -1,0 +1,21 @@
+.section {
+  margin-top: 20px;
+  padding: 105px 20px;
+  width: 100%;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  background-color: #191919;
+  color: #fff;
+}
+
+.post {
+  margin: auto;
+  padding: 20px;
+  width: 60%;
+  height: 500px;
+  background-color: #212123;
+  border-radius: 6px;
+  color: #b8b8b8;
+  position: relative;
+}
