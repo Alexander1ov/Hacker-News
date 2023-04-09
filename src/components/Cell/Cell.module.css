@@ -13,9 +13,31 @@
   margin: auto;
   padding: 20px;
   width: 60%;
-  height: 500px;
+  min-height: 500px;
   background-color: #212123;
   border-radius: 6px;
   color: #b8b8b8;
   position: relative;
+}
+.header {
+  text-align: center;
+}
+.info {
+  height: 150px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.info a {
+  font-size: 25px;
+  color: #9b61b9;
+}
+.info a:hover {
+  font-size: 25px;
+  color: rgb(249, 148, 15);
+}
+.info a:active {
+  font-size: 25px;
+  color: rgb(249, 15, 15);
 }

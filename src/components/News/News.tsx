@@ -25,7 +25,8 @@ const NewsPosts: FC = () => {
               return (
                 <Post
                   key={i}
-                  id={i}
+                  number={i}
+                  id={news.id}
                   title={news.title}
                   by={news.by}
                   score={news.score}

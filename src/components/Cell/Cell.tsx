@@ -1,19 +1,25 @@
-import React from "react";
+import React, { FC, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useAppSelector } from "../../hooks/hooks";
 
+import { fetchComments } from "../../store/commentsSlice/commentsSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { calcDate } from "../../utils/utils";
+import Comments from "../Comments/Comments";
 import Anim from "../Anim/Anim";
 
 import style from "./Cell.module.css";
-// import { calcDate } from "../../utils/utils";
 
-const Cell = () => {
+const Cell: FC = () => {
   const { id } = useParams();
   const { list, loading } = useAppSelector((state) => state.news);
-  const i = Number(id);
-  const data = list[i];
+  const post = list.find((elem) => elem.id === Number(id));
+  const dispatch = useAppDispatch();
 
-  console.log(data);
+  useEffect(() => {
+    if (!!post?.kids) {
+      dispatch(fetchComments(post.kids));
+    }
+  });
 
   return (
     <section className={style.section}>
@@ -24,9 +30,21 @@ const Cell = () => {
           </div>
         ) : (
           <>
-            <h2 className={style.header}>{data?.title}</h2>
-            <Link to={data?.url}>link to the website</Link>
-            {/* {data.time>0 && <div>{calcDate( data.time, true)}</div>} */}
+            {!!post && (
+              <>
+                <h2 className={style.header}>{post.title}</h2>
+                <div className={style.info}>
+                  <Link to={post.url}>link to the website</Link>
+                  <div>
+                    {" "}
+                    Author: {post.by[0].toUpperCase()}
+                    {post.by.slice(1)}{" "}
+                  </div>
+                  <div>Date of publication {calcDate(post.time, true)}</div>
+                </div>
+                <Comments />
+              </>
+            )}
           </>
         )}
       </div>

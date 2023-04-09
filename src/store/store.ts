@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import newsSlice from "./news/newsSlice";
+import commentsSlice from "./commentsSlice/commentsSlice";
+
 
 const store = configureStore({
   reducer: {
     news: newsSlice,
+    comments: commentsSlice,
   },
 });
 

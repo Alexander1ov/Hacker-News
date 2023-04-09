@@ -1,16 +1,16 @@
 import { createSlice, PayloadAction, createAsyncThunk, AnyAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import { News, NewsState } from "./types";
+import { News, NewsState } from "./newsTypes";
 
 export const fetchNews = createAsyncThunk<News[], undefined, { rejectValue: string }>( //3 rejectValue параметр - AsyncThunkConfig
   "news/fetchNews",
   async function (_, { rejectWithValue }) {
     try {
-      const response = await axios.get("https://hacker-news.firebaseio.com/v0/newstories.json");
+      const response = await axios.get("https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty");
       const data = response.data.slice(0, 200);
 
-      const results = data.map((id: number) => axios.get(`https://hacker-news.firebaseio.com/v0/item/${id}.json`));
+      const results = data.map((id: number) => axios.get(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`));
       const resultData = await Promise.all(results)
 
       return await Promise.all(resultData.map((item) => item.data))
@@ -28,11 +28,7 @@ const initialState: NewsState = {
 const newsSlice = createSlice({
   name: "news",
   initialState,
-  reducers: {
-    addNews: (state, action: PayloadAction<boolean>) => {
-      state.loading = action.payload
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchNews.pending, (state) => {
@@ -52,7 +48,6 @@ const newsSlice = createSlice({
   },
 });
 
-export const { addNews } = newsSlice.actions;
 export default newsSlice.reducer;
 
 function isError(action: AnyAction) {

@@ -1,0 +1,45 @@
+.list {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.list h2 {
+  text-align: center;
+}
+.comment {
+  margin: auto;
+  padding: 10px;
+  width: 80%;
+  border: 1px solid #9b61b9;
+  border-radius: 6px;
+  background-color: #191919;
+}
+.text {
+  padding: 10px;
+  font-size: 12px;
+  overflow: hidden;
+}
+.title {
+  text-align: right;
+}
+.kids {
+  width: fit-content;
+  margin: auto;
+}
+.kids button {
+  border: 1.5px solid #9b61b9;
+  border-radius: 4px;
+  background-color: #212123;
+  color: #b8b8b8;
+}
+
+.kids button:hover {
+  color: #fff;
+  border: 1.5px solid rgb(249, 148, 15);
+  background-color: rgba(0, 0, 0, 0.473);
+}
+.kids button:active {
+  border: 1.5px solid black;
+  color: #fff;
+}
